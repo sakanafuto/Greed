@@ -28,13 +28,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // PageController _pageController;
+  // int _selectedIndex = 1;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  // var _pages = [
+  //   InfoPage(), //左にスワイプして表示される画面
+  //   MacchinettaPage(), //最初に表示される画面
+  //   CategoryPage(), //右にスワイプして表示される画面
+  // ];
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _pageController = PageController(initialPage: _selectedIndex);
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _pageController.dispose();
+  // }
+
+  // void _onPageChanged(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,3 +134,4 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
+
