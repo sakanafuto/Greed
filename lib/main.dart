@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './drawer.dart';
+import './page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,54 +30,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // PageController _pageController;
-  // int _selectedIndex = 1;
-
-  // var _pages = [
-  //   InfoPage(), //左にスワイプして表示される画面
-  //   MacchinettaPage(), //最初に表示される画面
-  //   CategoryPage(), //右にスワイプして表示される画面
-  // ];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _pageController = PageController(initialPage: _selectedIndex);
-  // }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   _pageController.dispose();
-  // }
-
-  // void _onPageChanged(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
           title: Row(
-            children: [
-              // Icon(Icons.location_searching_sharp),
-              // SizedBox(width: 10),
-              Text("Flutter学習"),
-              Spacer(),
-              Icon(Icons.bakery_dining_rounded),
-            ],
-          )
-        ),
-
-        drawer: Drawer(child: Center(child: Text("Drawer"))),
-
-        body: Container(
-          margin: EdgeInsets.all(40.0),
-          padding: EdgeInsets.only(right: 10.0, left: 10.0),
-          decoration: BoxDecoration(
+        children: [
+          // Icon(Icons.location_searching_sharp),
+          // SizedBox(width: 10),
+          Text("Flutter学習"),
+          Spacer(),
+          Icon(Icons.bakery_dining_rounded),
+        ],
+      )),
+      drawer: Drawer(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text("abc"),
+                Text("def"),
+                Text("ghi"),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text("abc"),
+                Text("def"),
+                Text("ghi"),
+              ]
+            ),
+          ],
+        )
+      ),
+      body: Container(
+        margin: EdgeInsets.all(40.0),
+        padding: EdgeInsets.only(right: 10.0, left: 10.0),
+        decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
               color: Colors.lightGreen.shade500,
@@ -86,52 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
               BoxShadow(
                 blurRadius: 20,
               )
-            ]
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(
-                "First text.",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.green.shade900,
-                  fontWeight: FontWeight.bold,
-                )
-              ),
-              Padding(
-                padding: EdgeInsets.all(32.0),
-                child: Text("padding!!"),
-              ),
-              Container(
-                height: 100.0,
-                width: double.infinity,
-                color: Colors.lightBlue[50],
-                padding: EdgeInsets.all(5.0),
-                margin: EdgeInsets.all(10.0),
-                child: Icon(Icons.margin),
-              ),
-              Text("Second text."),
-              TextButton(
-                onPressed: () => {print("button.")},
-                child: Text("update."),
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                Icon(
-                  Icons.favorite,
-                  color: Colors.pink[600],
-                  size: 24.0,
-                ),
-                Icon(
-                  Icons.beach_access,
-                  color: Colors.blue[600],
-                  size: 36.0,
-                ),
-                Icon(Icons.audiotrack, color: Colors.green[600], size: 30.0),
-              ])
-            ]
-          )
-        ));
+            ]),
+        child: PageView.builder(
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          itemCount: pages.length,
+        ),
+      ),
+    );
   }
 }
-
