@@ -6,11 +6,16 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   bool dark = false;
+  String _appTitle;
+  MyAppState(this._appTitle);
+  String get appTitle => _appTitle; 
+  set appTitle(String appTitle){_appTitle = appTitle;}
+  
 
   void _changeTheme() {
     setState(() => dark = !dark);
@@ -31,7 +36,7 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: Row(
               children: [
-                Text("衝動買いはダメ！"),
+                Text(appTitle),
                 Spacer(),
               ],
             ),
@@ -82,7 +87,10 @@ class _MyAppState extends State<MyApp> {
                 color: Colors.yellow.shade200,
               ),
               TodoListPage(),
-              MyAppBody(),
+              MyAppBody(
+                title: '',
+                appTitle: '',
+              ),
             ],
           ),
         ),
