@@ -1,149 +1,120 @@
 import 'package:flutter/material.dart';
-import 'MyAppBody.dart';
-import 'ToDoListPage.dart';
+import 'favorite_page.dart';
+import 'todo_page.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class GreedApp extends StatelessWidget {
+  const GreedApp({Key? key}) : super(key: key);
 
   @override
-  MyAppState createState() => MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: GreedHomePage(title: 'Greed Home Page'),
+    );
+  }
 }
 
-class MyAppState extends State<MyApp> {
-  bool dark = false;
-  String _appTitle;
-  MyAppState(this._appTitle);
-  String get appTitle => _appTitle; 
-  set appTitle(String appTitle){_appTitle = appTitle;}
-  
+class GreedHomePage extends StatefulWidget {
+  const GreedHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
 
+  @override
+  State<StatefulWidget> createState() => _GreedHomePageState();
+}
+
+class _GreedHomePageState extends State<GreedHomePage> {
+  bool dark = false;
   void _changeTheme() {
     setState(() => dark = !dark);
   }
 
+  String _title = "";   
+  var _currentIndex = 1;
+
+  void _onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+
+      switch (index) {
+        case 0:
+          _title = "Settings";
+          break;
+        case 1:
+          _title = "List";
+          break;
+        case 2:
+          _title = "Favorite";
+          break;
+      }
+    });
+  }
+
+  final _pages = [
+    Container(
+      color: Colors.lime.shade100,
+    ),
+    TodoListPage(),
+    const GreedAppBody(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: dark
           ? ThemeData.dark()
           : ThemeData(
-              primarySwatch: Colors.teal,
+              primarySwatch: Colors.green,
             ),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Row(
-              children: [
-                Text(appTitle),
-                Spacer(),
-              ],
-            ),
-            bottom: const TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(Icons.face_unlock_rounded),
-                ),
-                Tab(
-                  icon: Icon(
-                    Icons.rocket_launch,
-                  ),
-                ),
-                Tab(
-                  icon: Icon(
-                    Icons.table_bar_sharp,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          drawer: Drawer(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const <Widget>[
-                        Text("abc"),
-                        Text("def"),
-                        Text("ghi"),
-                      ]),
-                ]),
-                Padding(
-                  padding: const EdgeInsets.only(top: 100.0, right: 160.0),
-                  child: FloatingActionButton(
-                      onPressed: _changeTheme,
-                      child: Icon(Icons.sunny,
-                          color: Colors.amber.shade300, size: 32.0)),
-                ),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              Container(
-                color: Colors.yellow.shade200,
-              ),
-              TodoListPage(),
-              MyAppBody(
-                title: '',
-                appTitle: '',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(_title),
+        ),
+        drawer: Drawer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const <Widget>[
+                      Text("abc"),
+                      Text("def"),
+                      Text("ghi"),
+                    ]),
+              ]),
+              Padding(
+                padding: const EdgeInsets.only(top: 100.0, right: 160.0),
+                child: FloatingActionButton(
+                    onPressed: _changeTheme,
+                    child: Icon(Icons.sunny,
+                        color: Colors.amber.shade300, size: 32.0)),
               ),
             ],
           ),
+        ),
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.shifting,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "Settings",
+              backgroundColor: Color.fromARGB(222, 126, 201, 119),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+              backgroundColor: Color.fromARGB(222, 126, 201, 119),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: "Favorite",
+              backgroundColor: Color.fromARGB(222, 126, 201, 119),
+            ),
+          ],
+          currentIndex: _currentIndex,
+          onTap: _onTap,
         ),
       ),
     );
   }
 }
-
-// final pages = [
-//   Container(
-//     color: Colors.pink.shade500,
-//   ),
-//   Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: <Widget>[
-//     Text("First text.",
-//         style: TextStyle(
-//           fontSize: 24,
-//           color: Colors.green.shade900,
-//           fontWeight: FontWeight.bold,
-//         )),
-//     Padding(
-//       padding: EdgeInsets.all(32.0),
-//       child: Text("padding!!"),
-//     ),
-//     Container(
-//       height: 100.0,
-//       width: double.infinity,
-//       color: Colors.lightBlue[50],
-//       padding: EdgeInsets.all(5.0),
-//       margin: EdgeInsets.all(10.0),
-//       child: Icon(Icons.margin),
-//     ),
-//     Text("Second text."),
-//     TextButton(
-//       onPressed: () => {print("button.")},
-//       child: Text("update."),
-//     ),
-//     Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-//       Icon(
-//         Icons.favorite,
-//         color: Colors.pink[600],
-//         size: 24.0,
-//       ),
-//       Icon(
-//         Icons.beach_access,
-//         color: Colors.blue[600],
-//         size: 36.0,
-//       ),
-//       Icon(Icons.audiotrack, color: Colors.green[600], size: 30.0),
-//     ])
-//   ]),
-//   Center(
-//       child: ElevatedButton(
-//     onPressed: _changeTheme,
-//     child: Text("Toggle theme"),
-//   )),
-// ];
