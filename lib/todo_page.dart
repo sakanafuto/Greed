@@ -60,13 +60,13 @@ class _TodoAddPageState extends State<TodoAddPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(_text, style: TextStyle(color: Colors.green.shade800)),
+            Text(_text, style: TextStyle(color: Colors.green.shade800, fontSize: 20)),
             TextField(onChanged: (String value) {
               setState(() {
                 _text = value;
               });
             }),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Container(
               width: double.infinity,
               child: ElevatedButton(
@@ -90,6 +90,14 @@ class _TodoAddPageState extends State<TodoAddPage> {
                 child: const Text("キャンセル"),
               ),
             ),
+            // const SizedBox(height: 32),
+            // Container(
+            //   width: double.maxFinite,
+            //   child: TextButton(
+            //     onPressed: (() {
+            //       Navigator.of(context).pushNamed("")
+            //     }),
+            //   ),
           ],
         ),
       ),
