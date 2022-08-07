@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'favorite_page.dart';
-import 'todo_page.dart';
-
+import 'package:hello_app/favorite_page.dart';
+import 'package:hello_app/theme/app_theme.dart';
+import 'package:hello_app/todo_page.dart';
 
 class GreedApp extends StatelessWidget {
   const GreedApp({Key? key}) : super(key: key);
@@ -23,18 +23,12 @@ class GreedHomePage extends StatefulWidget {
 }
 
 class _GreedHomePageState extends State<GreedHomePage> {
-  bool dark = false;
-  void _changeTheme() {
-    setState(() => dark = !dark);
-  }
-
-  String _title = "";   
+  String _title = "";
   var _currentIndex = 1;
 
   void _onTap(int index) {
     setState(() {
       _currentIndex = index;
-
       switch (index) {
         case 0:
           _title = "Settings";
@@ -50,67 +44,72 @@ class _GreedHomePageState extends State<GreedHomePage> {
   }
 
   final _pages = [
-    Container(
-      color: Colors.lime.shade100,
-    ),
-    TodoListPage(),
+    Container(),
+    const TodoListPage(),
     const GreedAppBody(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: dark
-          ? ThemeData.dark()
-          : ThemeData(
-              primarySwatch: Colors.green,
-            ),
+      theme: AppThemeData.mainThemeData,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(_title),
+          shape: const RoundedRectangleBorder(
+              // borderRadius: BorderRadius.only(
+              //   bottomRight: Radius.elliptical(90, 30),
+              // ),
+              ),
+          title: const Text("Awesome Title!!"),
+          elevation: 0,
+        ),
+        body: Stack(
+          children: [
+            _pages[_currentIndex],
+            Align(
+              alignment: Alignment.topCenter,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 300,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  Container(
+                    height: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(160),
+                        topRight: Radius.circular(160),
+                      ),
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
         drawer: Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const <Widget>[
-                      Text("abc"),
-                      Text("def"),
-                      Text("ghi"),
-                    ]),
-              ]),
-              Padding(
-                padding: const EdgeInsets.only(top: 100.0, right: 160.0),
-                child: FloatingActionButton(
-                    onPressed: _changeTheme,
-                    child: Icon(Icons.sunny,
-                        color: Colors.amber.shade300, size: 32.0)),
-              ),
-            ],
+          child: Container(
+            margin: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Text("ｈ１たいとるです",
+                    style: AppThemeData.mainThemeData.textTheme.headline1),
+                Text("ｈ４たいとるです",
+                    style: AppThemeData.mainThemeData.textTheme.headline4),
+              ],
+            ),
           ),
         ),
-        body: _pages[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Settings",
-              backgroundColor: Color.fromARGB(222, 126, 201, 119),
-            ),
+                icon: Icon(Icons.settings), label: "Settings"),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-              backgroundColor: Color.fromARGB(222, 126, 201, 119),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: "Favorite",
-              backgroundColor: Color.fromARGB(222, 126, 201, 119),
-            ),
+                icon: Icon(Icons.favorite), label: "Favorite"),
           ],
           currentIndex: _currentIndex,
           onTap: _onTap,

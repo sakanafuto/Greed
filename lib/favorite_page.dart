@@ -10,9 +10,9 @@ class GreedAppBody extends StatelessWidget {
           margin: const EdgeInsets.all(40.0),
           padding: const EdgeInsets.all(80.0),
           decoration: BoxDecoration(
-              color: Colors.white,
+              // color: Colors.white,
               border: Border.all(
-                color: Colors.lightGreen.shade500,
+                // color: Colors.lightGreen.shade500,
                 width: 3.0,
               ),
               borderRadius: BorderRadius.circular(50),
