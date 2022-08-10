@@ -52,15 +52,15 @@ class _TodoAddPageState extends State<TodoAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("欲しいモノを追加"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("欲しいモノを追加"),
+      // ),
       body: Container(
         padding: const EdgeInsets.all(64),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(_text, style: TextStyle(color: Colors.green.shade800, fontSize: 20)),
+            Text(_text),
             TextField(onChanged: (String value) {
               setState(() {
                 _text = value;
@@ -70,14 +70,10 @@ class _TodoAddPageState extends State<TodoAddPage> {
             Container(
               width: double.infinity,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                ),
                 onPressed: () {
                   Navigator.of(context).pop(_text);
                 },
-                child:
-                    const Text("リスト追加", style: TextStyle(color: Colors.white)),
+                child: const Text("リスト追加"),
               ),
             ),
             const SizedBox(height: 8),
