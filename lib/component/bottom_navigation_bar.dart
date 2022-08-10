@@ -31,12 +31,13 @@ class BottomNavigationBarView extends HookConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.task),
             label: '欲しい物を追加',
-          ),
+          ),  
         ],
-        onTap: (int selectIndex) => ref.read(tabTypeProvider.state).state = TabType.values[selectIndex],
+        onTap: (selectIndex) => ref.watch(tabTypeProvider.state).state = TabType.values[selectIndex],
         currentIndex: tabType.index,
       ),
       body: _views[tabType.index]
     );
   }
 }
+  

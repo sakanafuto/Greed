@@ -15,8 +15,8 @@ class MyApp extends HookConsumerWidget {
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
-      title: 'GreedApp',
       theme: AppThemeData.mainThemeData,
+      title: 'GreedApp',
     );
   }
 }

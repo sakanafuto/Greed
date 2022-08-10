@@ -1,47 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hello_app/favorite_page.dart';
 import 'package:hello_app/theme/app_theme.dart';
 import 'package:hello_app/todo_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class GreedApp extends StatelessWidget {
-  const GreedApp({Key? key}) : super(key: key);
+final appTabTypeProvider = StateProvider<AppTabType>((ref) => AppTabType.home);
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: GreedHomePage(title: 'Greed Home Page'),
-    );
-  }
+enum AppTabType {
+  home,
+  settings,
+  favorite,
 }
 
-class GreedHomePage extends StatefulWidget {
-  const GreedHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<StatefulWidget> createState() => _GreedHomePageState();
-}
-
-class _GreedHomePageState extends State<GreedHomePage> {
-  String _title = "";
-  var _currentIndex = 1;
-
-  void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-      switch (index) {
-        case 0:
-          _title = "Settings";
-          break;
-        case 1:
-          _title = "List";
-          break;
-        case 2:
-          _title = "Favorite";
-          break;
-      }
-    });
-  }
+class GreedApp extends HookConsumerWidget {
+  GreedApp({Key? key}) : super(key: key);
 
   final _pages = [
     Container(),
@@ -50,44 +23,13 @@ class _GreedHomePageState extends State<GreedHomePage> {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      theme: AppThemeData.mainThemeData,
+      theme: Theme.of(context),
       home: Scaffold(
         appBar: AppBar(
-          shape: const RoundedRectangleBorder(
-              // borderRadius: BorderRadius.only(
-              //   bottomRight: Radius.elliptical(90, 30),
-              // ),
-              ),
           title: const Text("Awesome Title!!"),
           elevation: 0,
-        ),
-        body: Stack(
-          children: [
-            _pages[_currentIndex],
-            Align(
-              alignment: Alignment.topCenter,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 300,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  Container(
-                    height: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(160),
-                        topRight: Radius.circular(160),
-                      ),
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
         ),
         drawer: Drawer(
           child: Container(
@@ -95,15 +37,21 @@ class _GreedHomePageState extends State<GreedHomePage> {
             child: Column(
               children: [
                 Text("ｈ１たいとるです",
-                    style: AppThemeData.mainThemeData.textTheme.headline1),
+                    style: Theme.of(context).textTheme.headline1),
                 Text("ｈ４たいとるです",
-                    style: AppThemeData.mainThemeData.textTheme.headline4),
+                    style: Theme.of(context).textTheme.headline4),
+                Card(
+                  child: ListTile(
+                    title: const Text("App"),
+                    onTap: () => context.go('/'),
+                  ),
+                ),
               ],
             ),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: "Settings"),
@@ -111,9 +59,11 @@ class _GreedHomePageState extends State<GreedHomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: "Favorite"),
           ],
-          currentIndex: _currentIndex,
-          onTap: _onTap,
+          currentIndex: ref.watch(appTabTypeProvider).index,
+          onTap: (selectIndex) => ref.watch(appTabTypeProvider.state).state =
+              AppTabType.values[selectIndex],
         ),
+        body: _pages[ref.watch(appTabTypeProvider).index],
       ),
     );
   }
