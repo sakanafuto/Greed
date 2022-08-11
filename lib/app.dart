@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hello_app/favorite_page.dart';
-import 'package:hello_app/theme/app_theme.dart';
+import 'package:hello_app/screen/greed_list_screen.dart';
 import 'package:hello_app/todo_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +18,7 @@ class GreedApp extends HookConsumerWidget {
   final _pages = [
     Container(),
     const TodoListPage(),
-    const GreedAppBody(),
+    const GreedListScreen(currentGreed: null,),
   ];
 
   @override
@@ -29,7 +28,6 @@ class GreedApp extends HookConsumerWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Awesome Title!!"),
-          elevation: 0,
         ),
         drawer: Drawer(
           child: Container(
@@ -43,7 +41,7 @@ class GreedApp extends HookConsumerWidget {
                 Card(
                   child: ListTile(
                     title: const Text("App"),
-                    onTap: () => context.go('/'),
+                    onTap: () => context.go('/home'),
                   ),
                 ),
               ],
@@ -57,7 +55,7 @@ class GreedApp extends HookConsumerWidget {
                 icon: Icon(Icons.settings), label: "Settings"),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: "Favorite"),
+                icon: Icon(Icons.list), label: "List"),
           ],
           currentIndex: ref.watch(appTabTypeProvider).index,
           onTap: (selectIndex) => ref.watch(appTabTypeProvider.state).state =

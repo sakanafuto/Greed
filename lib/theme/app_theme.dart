@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeData {
-  static final Color _focusColor = Colors.black.withOpacity(0.2);
+  static ThemeData mainThemeData = themeData(lightColorScheme, textTheme);
 
-  static ThemeData mainThemeData = themeData(lightColorScheme);
-
-  static ThemeData themeData(ColorScheme colorScheme) {
+  static ThemeData themeData(ColorScheme colorScheme, TextTheme textTheme) {
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
-      textTheme: _textTheme,
+      textTheme: textTheme,
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.primaryContainer,
+        backgroundColor: colorScheme.secondaryContainer,
         titleTextStyle: TextStyle(color: colorScheme.secondary),
-        elevation: 0,
         iconTheme: IconThemeData(color: colorScheme.primary),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: colorScheme.secondaryContainer,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: colorScheme.primaryContainer,
-        unselectedItemColor: colorScheme.secondary,
+        selectedItemColor: colorScheme.primary,
+        unselectedItemColor: colorScheme.tertiary,
       ),
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
-      // canvasColor: colorScheme.background,
+      canvasColor: colorScheme.background,
       highlightColor: Colors.transparent,
-      focusColor: _focusColor,
+      focusColor: colorScheme.primary.withOpacity(0.2),
     );
   }
 
@@ -56,7 +54,7 @@ class AppThemeData {
     outline: Color(0xFF72787C),
   );
 
-  static final TextTheme _textTheme = TextTheme(
+  static final TextTheme textTheme = TextTheme(
     headline1:
         GoogleFonts.sawarabiGothic(fontWeight: FontWeight.w700, fontSize: 24.0),
     headline2:

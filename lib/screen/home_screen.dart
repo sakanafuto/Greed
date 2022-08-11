@@ -16,7 +16,7 @@ class HomeScreen extends HookConsumerWidget {
             Card(
               child: ListTile(
                 title: const Text("App"),
-                onTap: () => context.go('/app'),
+                onTap: () => context.go('/greed'),
               ),
             ),
             const Card(
