@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/TypeAdapter/greed.dart';
+import 'package:hello_app/model/greed.dart';
 import 'package:hello_app/router/router.dart';
 import 'package:hello_app/theme/app_theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-late Box greedBox;
+late Box box;
 Future<void> main() async {
   await Hive.initFlutter();
-  greedBox = await Hive.openBox('greedBox');
+  box = await Hive.openBox('greedBox');
   Hive.registerAdapter(GreedAdapter());
   runApp(const ProviderScope(child: MyApp()));
 }

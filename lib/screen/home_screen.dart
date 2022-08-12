@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -9,8 +10,10 @@ class HomeScreen extends HookConsumerWidget {
     return Scaffold(
       body: const Center(child: Text('home')),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.javascript),
+        onPressed: () {
+          context.go('/addGreed');
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

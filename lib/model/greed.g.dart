@@ -8,7 +8,7 @@ part of 'greed.dart';
 
 class GreedAdapter extends TypeAdapter<Greed> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
   Greed read(BinaryReader reader) {

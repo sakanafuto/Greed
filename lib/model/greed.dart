@@ -2,8 +2,8 @@ import 'package:hive/hive.dart';
 
 part 'greed.g.dart';
 
-@HiveType(typeId: 1)
-class Greed {
+@HiveType(typeId: 0)
+class Greed extends HiveObject{
   @HiveField(0)
   int id;
 
