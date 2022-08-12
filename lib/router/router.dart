@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/app.dart';
 import 'package:hello_app/component/bottom_navigation_bar.dart';
 import 'package:hello_app/model/greed_list_model.dart';
 import 'package:hello_app/model/greed_model.dart';
@@ -24,13 +23,9 @@ final routerProvider = Provider(
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => BottomNavigationBarView(),
-      ),
-      GoRoute(
-        path: '/greed',
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
-          child: GreedApp(),
+          child: BottomNavigationBarView(),
         ),
         routes: [
           GoRoute(
