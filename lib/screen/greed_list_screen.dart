@@ -34,7 +34,7 @@ class GreedListScreen extends HookConsumerWidget {
                   onPressed: () {},
                 ),
                 onTap: () {
-                  context.go('/greed/detail/${greed.id}');
+                  context.go('/home/detail/${greed.id}');
                 },
               ),
             ),

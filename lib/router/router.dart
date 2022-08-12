@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/app.dart';
 import 'package:hello_app/component/bottom_navigation_bar.dart';
 import 'package:hello_app/model/greed_list_model.dart';
 import 'package:hello_app/model/greed_model.dart';
+import 'package:hello_app/screen/add_greeed_screen.dart';
 import 'package:hello_app/screen/greed_detail_screen.dart';
 import 'package:hello_app/screen/log_in_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,14 +23,11 @@ final routerProvider = Provider(
         ),
       ),
       GoRoute(
+        name: 'home',
         path: '/home',
-        builder: (context, state) => BottomNavigationBarView(),
-      ),
-      GoRoute(
-        path: '/greed',
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
-          child: GreedApp(),
+          child: BottomNavigationBarView(),
         ),
         routes: [
           GoRoute(
@@ -60,6 +57,14 @@ final routerProvider = Provider(
             },
           ),
         ],
+      ),
+      GoRoute(
+        name: 'addGreed',
+        path: '/addGreed',
+        pageBuilder: (context, state) => MaterialPage(
+          key: state.pageKey,
+          child: AddGreedScreen(),
+        ),
       ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(

@@ -14,7 +14,7 @@ class LogInScreen extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('ログイン'),
           onPressed: () {
-            context.go('/greed');
+            context.go('/home');
           },
         ),
       ),
