@@ -41,7 +41,7 @@ class BottomNavigationBarView extends HookConsumerWidget {
                 Card(
                   child: ListTile(
                     title: const Text("App"),
-                    onTap: () => context.go('/home'),
+                    onTap: () => context.go('/'),
                   ),
                 ),
               ],
