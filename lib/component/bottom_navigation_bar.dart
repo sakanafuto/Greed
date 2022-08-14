@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_app/screen/greed_list_screen.dart';
+import 'package:hello_app/screen/hive_test_screen.dart';
 import 'package:hello_app/screen/home_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,7 +17,7 @@ class BottomNavigationBarView extends HookConsumerWidget {
   BottomNavigationBarView({Key? key}) : super(key: key);
 
   final _pages = [
-    Container(),
+    HiveTestScreen(),
     const HomeScreen(),
     const GreedListScreen(
       currentGreed: null,
@@ -35,13 +36,14 @@ class BottomNavigationBarView extends HookConsumerWidget {
           child: Container(
             margin: const EdgeInsets.all(20.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text("ｈ１たいとるです", style: Theme.of(context).textTheme.headline1),
                 Text("ｈ４たいとるです", style: Theme.of(context).textTheme.headline4),
                 Card(
                   child: ListTile(
                     title: const Text("App"),
-                    onTap: () => context.go('/home'),
+                    onTap: () => context.go('/'),
                   ),
                 ),
               ],
