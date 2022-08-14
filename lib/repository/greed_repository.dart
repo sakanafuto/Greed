@@ -1,5 +1,5 @@
 import 'package:hello_app/model/greed.dart';
-import 'package:hello_app/model/greed_box.dart';
+import 'package:hello_app/model/boxes.dart';
 
 class GreedRepository {
   Future addGreedRepository(String name, int price, String description) async {
