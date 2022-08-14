@@ -1,8 +1,28 @@
-class Greed {
-  int id;
-  String name;
-  int price;
-  String description;
+import 'package:flutter/material.dart';
+import 'package:hello_app/main.dart';
+import 'package:hello_app/model/greed.dart';
+import 'package:hello_app/repository/greed_repository.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-  Greed({required this.id, required this.name, required this.price, required this.description});
+final greedModelProvider = ChangeNotifierProvider<GreedModel>(
+  (ref) => GreedModel(),
+);
+
+class GreedModel extends ChangeNotifier {
+  GreedRepository greedRepository = GreedRepository();
+
+  final List<Greed> greeds = box.values.toList().cast<Greed>();
+
+  void addGreed(String name, int price, String description) {
+    greedRepository.addGreedRepository(name, price, description);
+    notifyListeners();
+  }
+
+  Greed? greedFromName(String name) {
+    try {
+      return greeds.where((greed) => greed.name == name).first;
+    } catch (e) {
+      return null;
+    }
+  }
 }

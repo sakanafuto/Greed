@@ -17,24 +17,21 @@ class GreedAdapter extends TypeAdapter<Greed> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Greed(
-      id: fields[0] as int,
-      name: fields[1] as String,
-      price: fields[2] as int,
-      description: fields[3] as String,
+      name: fields[0] as String,
+      price: fields[1] as int,
+      description: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Greed obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.name)
-      ..writeByte(2)
-      ..write(obj.price)
       ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.price)
+      ..writeByte(2)
       ..write(obj.description);
   }
 

@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:hello_app/component/bottom_navigation_bar.dart';
-import 'package:hello_app/model/greed_list_model.dart';
+import 'package:hello_app/model/greed.dart';
 import 'package:hello_app/model/greed_model.dart';
-import 'package:hello_app/screen/add_greeed_screen.dart';
+import 'package:hello_app/screen/add_greed_screen.dart';
 import 'package:hello_app/screen/greed_detail_screen.dart';
 import 'package:hello_app/screen/log_in_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-final greedDetailProvider = Provider<GreedList>((ref) => GreedList());
 
 final routerProvider = Provider(
   (ref) => GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       GoRoute(
         name: 'login',
-        path: '/',
+        path: '/login',
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           child: const LogInScreen(),
@@ -24,19 +23,19 @@ final routerProvider = Provider(
       ),
       GoRoute(
         name: 'home',
-        path: '/home',
+        path: '/',
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           child: BottomNavigationBarView(),
         ),
         routes: [
           GoRoute(
-            name: 'detail',
-            path: 'detail/:id',
+            name: 'list',
+            path: 'list/:name',
             pageBuilder: (context, state) {
               Greed? greed = ref
-                  .watch(greedDetailProvider)
-                  .greedFromId(state.params['id']!);
+                  .read(greedModelProvider)
+                  .greedFromName(state.params['name']!);
               if (greed == null) {
                 return MaterialPage(
                   key: state.pageKey,
