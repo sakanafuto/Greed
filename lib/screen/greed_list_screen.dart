@@ -4,14 +4,14 @@ import 'package:hello_app/model/greed.dart';
 import 'package:hello_app/model/boxes.dart';
 import 'package:hello_app/model/greed_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GreedListScreen extends HookConsumerWidget {
+class GreedListScreen extends ConsumerWidget {
   const GreedListScreen({Key? key, required currentGreed}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final greedModel = ref.read(greedModelProvider);
+    final greeds = ref.watch(greedsProvider);
     return Scaffold(
       body: Column(
         children: [
@@ -19,7 +19,7 @@ class GreedListScreen extends HookConsumerWidget {
             valueListenable: Boxes.getGreeds().listenable(),
             builder: (context, box, _) {
               final greeds = box.values.toList().cast<Greed>();
-              return buildContent(greeds, greedModel);
+              return buildContent(greeds);
             },
           ),
         ],
@@ -31,7 +31,7 @@ class GreedListScreen extends HookConsumerWidget {
     );
   }
 
-  Widget buildContent(List<Greed> greeds, GreedModel greedModel) {
+  Widget buildContent(List<Greed> greeds) {
     if (greeds.isEmpty) {
       return const Center(
         child: Text(
@@ -39,27 +39,27 @@ class GreedListScreen extends HookConsumerWidget {
         ),
       );
     } else {
-      return  SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 600,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: greeds.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final greed = greeds[index];
-                    return buildGreed(context, greed, greedModel);
-                  },
-                ),
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 600,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: greeds.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final greed = greeds[index];
+                  return buildGreed(context, greed);
+                },
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
       );
     }
   }
 
-  Widget buildGreed(BuildContext context, Greed greed, GreedModel greedModel) {
+  Widget buildGreed(BuildContext context, Greed greed) {
     return Card(
       color: Theme.of(context).colorScheme.background,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
