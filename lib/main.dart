@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_app/model/greed_model.dart';
 import 'package:hello_app/theme/app_theme.dart';
 import 'package:hello_app/router/router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hello_app/model/greed.dart';
 
@@ -14,7 +14,7 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends HookConsumerWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hello_app/screen/greed_list_screen.dart';
 import 'package:hello_app/screen/hive_test_screen.dart';
 import 'package:hello_app/screen/home_screen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final appTabTypeProvider = StateProvider<AppTabType>((ref) => AppTabType.home);
 
@@ -13,7 +13,7 @@ enum AppTabType {
   favorite,
 }
 
-class BottomNavigationBarView extends HookConsumerWidget {
+class BottomNavigationBarView extends ConsumerWidget {
   BottomNavigationBarView({Key? key}) : super(key: key);
 
   final _pages = [

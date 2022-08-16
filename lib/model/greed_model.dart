@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_app/main.dart';
 import 'package:hello_app/model/greed.dart';
 import 'package:hello_app/repository/greed_repository.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final greedModelProvider = ChangeNotifierProvider<GreedModel>(
   (ref) => GreedModel(),

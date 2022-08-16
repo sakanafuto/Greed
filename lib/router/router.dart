@@ -5,9 +5,8 @@ import 'package:hello_app/model/greed_model.dart';
 import 'package:hello_app/screen/add_greed_screen.dart';
 import 'package:hello_app/screen/greed_detail_screen.dart';
 import 'package:hello_app/screen/log_in_screen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
 
 final routerProvider = Provider(
   (ref) => GoRouter(

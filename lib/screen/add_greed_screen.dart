@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_app/model/greed_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddGreedScreen extends HookConsumerWidget {
+class AddGreedScreen extends ConsumerWidget {
   AddGreedScreen({Key? key}) : super(key: key);
 
   final _nameController = TextEditingController();

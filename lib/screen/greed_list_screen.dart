@@ -4,9 +4,9 @@ import 'package:hello_app/model/greed.dart';
 import 'package:hello_app/model/boxes.dart';
 import 'package:hello_app/model/greed_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GreedListScreen extends HookConsumerWidget {
+class GreedListScreen extends ConsumerWidget {
   const GreedListScreen({Key? key, required currentGreed}) : super(key: key);
 
   @override
@@ -39,22 +39,22 @@ class GreedListScreen extends HookConsumerWidget {
         ),
       );
     } else {
-      return  SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 600,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: greeds.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final greed = greeds[index];
-                    return buildGreed(context, greed, greedModel);
-                  },
-                ),
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 600,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: greeds.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final greed = greeds[index];
+                  return buildGreed(context, greed, greedModel);
+                },
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
       );
     }
   }

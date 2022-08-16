@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hello_app/model/greed.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GreedDetailScreen extends HookConsumerWidget {
+class GreedDetailScreen extends ConsumerWidget {
   const GreedDetailScreen({Key? key, required this.greed}) : super(key: key);
   final Greed greed;
 
