@@ -3,19 +3,23 @@ import 'package:hive/hive.dart';
 part 'greed.g.dart';
 
 @HiveType(typeId: 0)
-class Greed extends HiveObject{
+class Greed extends HiveObject {
+  Greed({required this.name, required this.price, required this.description});
+
   @HiveField(0)
-  String name;
+  final String name;
 
   @HiveField(1)
-  int price;
+  final int price;
 
   @HiveField(2)
-  String description;
+  final String description;
 
-  Greed({
-    required this.name,
-    required this.price,
-    required this.description,
-  });
+  Greed copyWith({String? name, int? price, String? description}) {
+    return Greed(
+      name: name ?? this.name,
+      price: price ?? this.price,
+      description: description ?? this.description,
+    );
+  }
 }

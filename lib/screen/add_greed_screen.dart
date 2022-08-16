@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hello_app/model/greed_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hello_app/model/greed_model.dart';
 
 class AddGreedScreen extends ConsumerWidget {
   AddGreedScreen({Key? key}) : super(key: key);
@@ -13,7 +13,6 @@ class AddGreedScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final greedModel = ref.read(greedModelProvider);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -68,7 +67,7 @@ class AddGreedScreen extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () => {
-                    greedModel.addGreed(
+                    ref.read(greedsProvider.notifier).addGreed(
                       _nameController.text,
                       int.parse(_priceController.text),
                       _descriptionController.text,

@@ -33,7 +33,7 @@ final routerProvider = Provider(
             path: 'list/:name',
             pageBuilder: (context, state) {
               Greed? greed = ref
-                  .read(greedModelProvider)
+                  .read(greedsProvider.notifier)
                   .greedFromName(state.params['name']!);
               if (greed == null) {
                 return MaterialPage(
