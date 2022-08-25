@@ -11,15 +11,15 @@ class GreedListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final greeds = ref.watch(greedsProvider);
+    List<Greed> greeds = ref.watch(greedsProvider);
     return Scaffold(
       body: Column(
         children: [
           ValueListenableBuilder<Box<Greed>>(
             valueListenable: Boxes.getGreeds().listenable(),
             builder: (context, box, _) {
-              final greeds = box.values.toList().cast<Greed>();
-              return buildContent(greeds);
+              final greedList = box.values.toList().cast<Greed>();
+              return buildContent(greedList, greeds);
             },
           ),
         ],
@@ -31,8 +31,8 @@ class GreedListScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildContent(List<Greed> greeds) {
-    if (greeds.isEmpty) {
+  Widget buildContent(List<Greed> greedList, List<Greed> greeds) {
+    if (greedList.isEmpty) {
       return const Center(
         child: Text(
           'Greedがありません。',
@@ -46,10 +46,10 @@ class GreedListScreen extends ConsumerWidget {
               height: 600,
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: greeds.length,
+                itemCount: greedList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final greed = greeds[index];
-                  return buildGreed(context, greed);
+                  final greed = greedList[index];
+                  return buildGreed(context, greed, greeds);
                 },
               ),
             ),
@@ -59,7 +59,7 @@ class GreedListScreen extends ConsumerWidget {
     }
   }
 
-  Widget buildGreed(BuildContext context, Greed greed) {
+  Widget buildGreed(BuildContext context, Greed greed, List<Greed> greeds) {
     return Card(
       color: Theme.of(context).colorScheme.background,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
