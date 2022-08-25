@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hello_app/model/greed_model.dart';
-import 'package:hello_app/model/greed_model.dart';
 import 'package:hello_app/theme/app_theme.dart';
 import 'package:hello_app/router/router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
