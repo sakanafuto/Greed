@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hello_app/component/bottom_navigation_bar.dart';
+import 'package:hello_app/ui/component/bottom_navigation_bar.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
