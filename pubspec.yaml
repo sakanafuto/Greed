@@ -1,35 +1,35 @@
 name: hello_app
 description: A new Flutter project.
-publish_to: 'none' 
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
-  google_fonts: ^3.0.1
+  flutter_riverpod: ^1.0.4
+  freezed_annotation: ^2.1.0
   go_router: ^4.2.7
+  google_fonts: ^3.0.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  flutter_riverpod: ^1.0.4
   table_calendar: ^3.0.6
 
-
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  build_runner: ^2.2.0
 
   flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.1.0+1
   hive_generator: ^1.1.3
-  build_runner: ^2.2.0
 
 flutter:
   uses-material-design: true
 
-assets: 
+assets:
   - .env
