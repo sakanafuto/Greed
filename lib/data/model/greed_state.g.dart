@@ -1,30 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'greed_model.dart';
+part of 'greed_state.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GreedModelAdapter extends TypeAdapter<_$_GreedModel> {
+class GreedStateAdapter extends TypeAdapter<_$_GreedState> {
   @override
   final int typeId = 0;
 
   @override
-  _$_GreedModel read(BinaryReader reader) {
+  _$_GreedState read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _$_GreedModel(
+    return _$_GreedState(
       name: fields[0] as String,
       price: fields[1] as int,
-      description: fields[2] as String,
+      description: fields[2] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, _$_GreedModel obj) {
+  void write(BinaryWriter writer, _$_GreedState obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class GreedModelAdapter extends TypeAdapter<_$_GreedModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is GreedModelAdapter &&
+      other is GreedStateAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/data/local/greed_model.dart';
+import 'package:hello_app/data/model/greed_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GreedDetailScreen extends ConsumerWidget {
   const GreedDetailScreen({Key? key, required this.greed}) : super(key: key);
-  final GreedModel greed;
+  final GreedState greed;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('しょうさい'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
+        appBar: AppBar(title: const Text('詳細')),
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(height: 16),
           Text(greed.name),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text('¥${greed.price}円'),
-          const SizedBox(
-            height: 16,
-          ),
+          const SizedBox(height: 16),
           Text('なんでほしいの？\n${greed.description}'),
-        ],
-      ),
-    );
+        ]));
   }
 }
