@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hello_app/ui/greed/greed_list_screen.dart';
-import 'package:hello_app/ui/greed/hive_test_screen.dart';
-import 'package:hello_app/ui/home/home_screen.dart';
+import 'package:greed/ui/greed/greed_list_screen.dart';
+import 'package:greed/ui/greed/hive_test_screen.dart';
+import 'package:greed/ui/home/home_screen.dart';
 
 final appTabTypeProvider = StateProvider<AppTabType>((ref) => AppTabType.home);
 

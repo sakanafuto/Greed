@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hello_app/data/datasource/boxes.dart';
-import 'package:hello_app/data/model/greed_state.dart';
+import 'package:greed/data/model/greed_state.dart';
 
 /// todo: routerやmainで実装していたstatenotifier用の記述をadd_greed_view_modelと
 /// 合わせて回収する

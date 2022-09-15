@@ -1,4 +1,4 @@
-package com.example.hello_app
+package com.example.greed
 
 import io.flutter.embedding.android.FlutterActivity
 

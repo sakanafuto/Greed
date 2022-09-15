@@ -1,4 +1,4 @@
-import 'package:hello_app/data/model/greed_state.dart';
+import 'package:greed/data/model/greed_state.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Boxes {
