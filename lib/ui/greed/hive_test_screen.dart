@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/data/model/greed_state.dart';
-import 'package:hello_app/main.dart';
+import 'package:greed/data/model/greed_state.dart';
+import 'package:greed/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HiveTestScreen extends ConsumerWidget {

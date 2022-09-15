@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hello_app/data/model/greed_state.dart';
-import 'package:hello_app/theme/app_theme.dart';
-import 'package:hello_app/router/router.dart';
+import 'package:greed/data/model/greed_state.dart';
+import 'package:greed/theme/app_theme.dart';
+import 'package:greed/router/router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:greed/ui/component/bottom_navigation_bar.dart';
+import 'package:greed/ui/home/home_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late Box box;
@@ -19,17 +21,21 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
-    ref.listen(greedsProvider, (_, __) {
-      router.refresh();
-    });
+    // final router = ref.watch(routerProvider);
+    // ref.listen(greedsProvider, (_, __) {
+    //   router.refresh();
+    // });
 
-    return MaterialApp.router(
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+    return MaterialApp(
+      // routeInformationProvider: router.routeInformationProvider,
+      // routeInformationParser: router.routeInformationParser,
+      // routerDelegate: router.routerDelegate,
       theme: AppThemeData.mainThemeData,
       title: 'GreedApp',
+      home: Scaffold(
+        body: const HomeScreen(),
+        bottomNavigationBar: BottomNavigationBarView(),
+      ),
     );
   }
 }

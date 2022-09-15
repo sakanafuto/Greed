@@ -1,21 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hello_app/data/datasource/greed_data_source.dart';
-import 'package:hello_app/data/datasource/greed_data_source_impl.dart';
+import 'package:greed/data/datasource/boxes.dart';
+import 'package:greed/data/model/greed_state.dart';
 
+final greedNotifier =
+    StateNotifierProvider<GreedNotifier, GreedState>((ref) => GreedNotifier());
 
-final addGreedViewModelProvider =
-    ChangeNotifierProvider((ref) => AddGreedViewModel(ref.read));
+class GreedNotifier extends StateNotifier<GreedState> {
+  GreedNotifier()
+      : super(
+            const GreedState(name: "sample", price: 0, description: "sample"));
 
-class AddGreedViewModel extends ChangeNotifier {
-  AddGreedViewModel(this._reader);
+  void addGreed(
+      {required String name, required int price, String? description}) {
+    state = GreedState(name: name, price: price, description: description);
 
-  final Reader _reader;
-
-  late final GreedDataSource _dataSource = _reader(greedDataSourceProvider);
-
-  void add({required name, required price, required description}) {
-    _dataSource.addGreed(name: name, price: price, description: description);
-    notifyListeners();
+    final box = Boxes.getGreeds();
+    box.add(state);
   }
 }
